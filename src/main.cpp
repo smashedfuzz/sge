@@ -1,9 +1,16 @@
-#include <iostream>
-#include <SDL2/SDL.h>
+#include "core/Engine.h"
+//int argc, char** argv
 
-int main (int argc, char** argv)
+int main ()
 {
-    if (!SDL_Init(SDL_INIT_EVERYTHING))
-        std::cout << "Everything running fine" << std::endl;
+    Engine* engine = Engine::GetInstance();
+    engine->Init();
+    while (engine->IsRunning())
+    {
+        engine->Events();
+        engine->Update(0.0);
+        engine->Render();
+    }
+    engine->Clean();
     return 0;
 }
