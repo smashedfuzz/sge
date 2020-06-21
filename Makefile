@@ -27,7 +27,6 @@ $(OBJ_DIR)/%.o : %.cpp
 $(APP_DIR)/$(TARGET): $(OBJECTS)
 	@mkdir -p $(@D)
 	$(CXX) $(COMPILER_FLAGS) -o $(APP_DIR)/$(TARGET) $^ $(LINKER_FLAGS)
-	./$(APP_DIR)/$(TARGET)
 
 .PHONY: all build clean debug release
 
@@ -43,4 +42,4 @@ release: all
 
 clean:
 	-@rm -rvf $(OBJ_DIR)/*
-	-@rm -rvf $(APP_DIR)/*
+	-@rm -rvf $(APP_DIR)/sge
