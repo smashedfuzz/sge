@@ -1,8 +1,9 @@
 #include "core/Engine.h"
 #include "graphics/TextureManager.h"
-#include "physics/Transform.h"
+#include "characters/Warrior.h"
 
 Engine* Engine::s_Instance = nullptr;
+Warrior* player = nullptr;
 
 bool Engine::Init()
 {
@@ -32,7 +33,8 @@ bool Engine::Init()
         SDL_Log("Fallo la creacion del renderizador. %s", SDL_GetError());
     }
 
-    TextureManager::GetInstance()->Load("tileset", "assets/tilemap/tileset.png");
+    TextureManager::GetInstance()->Load("player", "assets/tilemap/tileset.png");
+    player = new Warrior(new Properties("player", 250, 250, 0, 8, 8));
     
     return m_IsRunning = true;
 }
@@ -70,17 +72,14 @@ void Engine::Events()
 
 void Engine::Update(float dt)
 {
-    if (dt > 0) 
-    {
-        std::cout << "yes" << std::endl;
-    }
+    player->Update(dt);
 }
 
 void Engine::Render()
 {
     SDL_SetRenderDrawColor(m_Renderer, 0x00, 0x00, 0x00, 0xFF);
     SDL_RenderClear(m_Renderer);
-    TextureManager::GetInstance()->Draw("tileset", 0,0, SCREEN_WIDTH, SCREEN_HEIGHT);
+    player->Draw();
     SDL_RenderPresent(m_Renderer);
 }
 

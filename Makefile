@@ -11,6 +11,7 @@ INCLUDE := -Iinclude/
 SRC :=						\
 $(wildcard src/core/*.cpp)	\
 $(wildcard src/graphics/*.cpp)	\
+$(wildcard src/characters/*.cpp)	\
 $(wildcard src/*.cpp)		\
 # AGREGAR TODAS LAS DEPENDENCIAS Y MODULOS ACA
 
